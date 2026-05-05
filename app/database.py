@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, DeclaretiveBase
+from sqlalchemy.orm import sessionmaker, DeclarativeBase
 from dotenv import load_dotenv
 import os
 
@@ -12,7 +12,7 @@ engine =  create_engine(
 )
 Session = sessionmaker(autocommit=False, autoflush=False, bind=engine) #mesma coisa no nosso projeto
 
-class Base(DeclaretiveBase):
+class Base(DeclarativeBase):
     pass #todo mundo q herdar da Base, vai conseguir fazer conexão com o banco
 
 def get_db():

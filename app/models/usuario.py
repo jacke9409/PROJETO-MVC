@@ -21,4 +21,4 @@ class usuario(Base):
     # para saber se o usuário está ativo ou não 
     ativo = Column(Boolean, nullable=False, default=True)
     #preenchimento automatico pelo banco de dados ao criar o registro
-    criado_em = Column(DateTime, func.now())
+    criado_em = Column(DateTime, server_default=func.now())
