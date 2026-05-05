@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.sql import func #pega a data atual (func)
 #preciso importar do database, a classe Base que tem la, pra ca
 #mas preciso ver aonde ele está, dentro de app então:
-from app.templates.database import Base
+from app.database import Base
 
 class usuario(Base):
     __tablename__= "usuarios"
