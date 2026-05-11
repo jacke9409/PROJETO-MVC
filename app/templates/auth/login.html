@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
+
 <body>
     <h1>Entrar no sistema</h1>
 
     <form action="/auth/login" method="post">
+        <!-- exibe confirmação após cadastro feito-->
+         {% if request.query_params.get('cadastro') == 'ok' %}
+        <p style="color: green;">Cadastro realizado com sucesso! Faça login.</p>
+        {% endif %}
+
         Email: <input type="email" name="email" required>
         <br><br>
         Senha: <input type="password" name="senha" required>
         <br><br>
         {% if error %}
-            <p style="color: red;">{{ error }}</p>
+        <p style="color: red;">{{ error }}</p>
         {% endif %}
         <input type="submit" value="Entrar">
     </form>
     <p>Não tem conta? <a href="/auth/cadastro"><Cadastre-se></Cadastre-se></a></p>
 </body>
+
 </html>
