@@ -13,3 +13,14 @@ python -m alembic revision --autogenerate -m "criar tabela usuarios"
 
 <!-- aplicar a migration -->
 python -m alembic upgrade head
+
+#Como rodar o código
+'''bash
+python -m uvicorn app.main --reload
+
+#Como rodar o código
+'''bash
+python -m uvicorn app.main --reload
+
+
+

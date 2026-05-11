@@ -4,7 +4,7 @@
 from datetime import datetime, timedelta, timezone
 from jose import JWTError, jwt
 from passlib.context import CryptContext
-from fastapi import requests, HTTPException, status
+from fastapi import Request, HTTPException, status
 from dotenv import load_dotenv
 import os
 # carregar variáveis de ambiente do .env
@@ -40,7 +40,7 @@ def decodificar_token(token: str):
     return payload
     # dependenciais do fastapi para lidar com erros de autenticação
 
-def get_usuario_logado(request: requests.Request):
+def get_usuario_logado(request: Request):
     token = request.cookies.get("access_token")
 
     if not token:
@@ -61,4 +61,11 @@ def get_usuario_logado(request: requests.Request):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Token de autenticação inválido"
         )
-    
+
+def get_usuario_opcional(request: Request):
+    try:
+        return get_usuario_logado(request)
+    except HTTPException:
+        return None
+# se o usuário estive logado segue a vida, se n
+# só retorna None, sem lançar erro de autenticação

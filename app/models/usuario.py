@@ -4,7 +4,7 @@ from sqlalchemy.sql import func #pega a data atual (func)
 #mas preciso ver aonde ele está, dentro de app então:
 from app.database import Base
 
-class usuario(Base):
+class Usuario(Base):
     __tablename__= "usuarios"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
