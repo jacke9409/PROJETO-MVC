@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Painel do Usuário</title>
+    <style>
+        /* Mantendo a identidade visual do sistema */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .dashboard-card {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        /* Avatar genérico para o usuário */
+        .avatar-placeholder {
+            width: 80px;
+            height: 80px;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            color: #777;
+        }
+
+        h1 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 26px;
+        }
+
+        .welcome-text {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+
+        /* Estilização das informações do perfil */
+        .info-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .info-box p {
+            margin: 5px 0;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background-color: #e2e3e5;
+            color: #383d41;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Destaca o badge se o papel for admin */
+        .role-admin {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        /* Botão de Logout elegante */
+        .btn-logout {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            background-color: #dc3545;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.1s;
+            box-sizing: border-box;
+        }
+
+        .btn-logout:hover {
+            background-color: #bd2130;
+        }
+
+        .btn-logout:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dashboard-card">
+        <div class="avatar-placeholder">👤</div>
+
+        <h1>Olá, {{ usuario.nome }}!</h1>
+        <p class="welcome-text">Seja bem-vindo ao seu painel de controle.</p>
+
+        <div class="info-box">
+            <p><strong>Nome:</strong> {{ usuario.nome }}</p>
+            <p>
+                <strong>Perfil:</strong> 
+                <span class="role-badge {% if usuario.role == 'admin' %}role-admin{% endif %}">
+                    {{ usuario.role }}
+                </span>
+            </p>
+        </div>
+
+        <a href="/auth/login" class="btn-logout">Sair do Sistema</a>
+    </div>
+
+</body>
+
+</html>

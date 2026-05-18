@@ -1,31 +1,161 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login | Entrar no Sistema</title>
+    <style>
+        /* Mantendo a consistência visual com a tela de cadastro */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card-login {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            margin-bottom: 24px;
+            color: #333;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos para os alertas (Sucesso e Erro) */
+        .success-message {
+            color: #270;
+            background-color: #DFF2BF;
+            border: 1px solid #4F8A10;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .error-message {
+            color: #D8000C;
+            background-color: #FFBABA;
+            border: 1px solid #D8000C;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 15px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .register-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Entrar no sistema</h1>
 
-    <form action="/auth/login" method="post">
-        <!-- exibe confirmação após cadastro feito-->
-         {% if request.query_params.get('cadastro') == 'ok' %}
-        <p style="color: green;">Cadastro realizado com sucesso! Faça login.</p>
+    <div class="card-login">
+        <h1>Entrar no Sistema</h1>
+
+        {% if request.query_params.get('cadastro') == 'ok' %}
+        <div class="success-message">
+            Cadastro realizado com sucesso! Faça login.
+        </div>
         {% endif %}
 
-        Email: <input type="email" name="email" required>
-        <br><br>
-        Senha: <input type="password" name="senha" required>
-        <br><br>
-        {% if error %}
-        <p style="color: red;">{{ error }}</p>
-        {% endif %}
-        <input type="submit" value="Entrar">
-    </form>
-    <p>Não tem conta? <a href="/auth/cadastro"><Cadastre-se></Cadastre-se></a></p>
+        <form action="/auth/login" method="post">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+            </div>
+
+            <input type="submit" value="Entrar">
+
+            {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endif %}
+        </form>
+
+        <p class="register-link">Não tem conta? <a href="/auth/cadastro">Cadastre-se</a></p>
+    </div>
+
 </body>
 
 </html>
